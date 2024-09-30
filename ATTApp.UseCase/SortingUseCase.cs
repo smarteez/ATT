@@ -10,10 +10,10 @@ namespace ATTApp.UseCase
 {
     public  class SortingUseCase
     {
-        public DisplayDTO SortAndDisplayResults(ConcurrentBag<int> sharedVariable)
+        public DisplayDTO SortAndDisplayResults(ConcurrentBag<int> globalVariable)
         {
-            var sortedList = sharedVariable.OrderBy(x => x).ToList();
-            int totalCount = sortedList.Count;
+            var sortedList = globalVariable.OrderBy(x => x).ToList();
+            int totalCount = globalVariable.Count;
             int oddCount = sortedList.Count(x => x % 2 != 0);
             int evenCount = totalCount - oddCount;
 
@@ -22,6 +22,7 @@ namespace ATTApp.UseCase
                 TotalCount = totalCount,
                 OldCount = oddCount,
                 EventCount = oddCount,
+                list = globalVariable
             };
         }
     }
