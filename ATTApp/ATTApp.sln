@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATTApp.Shared", "..\ATTApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATTApp.Domin", "..\ATTApp.Domin\ATTApp.Domin.csproj", "{C38DA0D4-840C-42FE-AE73-B56B6D9523D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATTApp.Repository", "..\ATTApp.Repository\ATTApp.Repository.csproj", "{1FB16E31-E004-49E7-AF06-D88DA0A578E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C38DA0D4-840C-42FE-AE73-B56B6D9523D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C38DA0D4-840C-42FE-AE73-B56B6D9523D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C38DA0D4-840C-42FE-AE73-B56B6D9523D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB16E31-E004-49E7-AF06-D88DA0A578E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB16E31-E004-49E7-AF06-D88DA0A578E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB16E31-E004-49E7-AF06-D88DA0A578E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB16E31-E004-49E7-AF06-D88DA0A578E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ATTApp.Data\ATTApp.Data.csproj" />
+    <ProjectReference Include="..\ATTApp.Shared\ATTApp.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
