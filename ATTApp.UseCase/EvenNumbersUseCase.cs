@@ -11,7 +11,7 @@ namespace ATTApp.UseCase
     {
         private static Random random = new Random();
 
-        public void GenerateEvenNumbers(ConcurrentBag<int> globalVariable, int limit)
+        public void Execute(ConcurrentBag<int> globalVariable, int limit)
         {
             while (globalVariable.Count < limit)
             {

@@ -18,7 +18,7 @@ namespace ATTApp.UseCase
             INumberRepository = iNumberRepository;
         }
 
-        public bool SaveData(ConcurrentBag<int> globalVariable)
+        public bool Execute(ConcurrentBag<int> globalVariable)
         {
             return INumberRepository.Add(globalVariable);
         }

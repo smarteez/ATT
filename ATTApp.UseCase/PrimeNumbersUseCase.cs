@@ -16,7 +16,7 @@ namespace ATTApp.UseCase
             IsPrime = isPrime;
         } 
 
-        public void GeneratePrimeNumbers(ConcurrentBag<int> globalVariable, int limit)
+        public void Execute(ConcurrentBag<int> globalVariable, int limit)
         {
             int number = 2;
             while (globalVariable.Count < limit)

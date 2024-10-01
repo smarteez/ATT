@@ -10,7 +10,7 @@ namespace ATTApp.UseCase
 {
     public  class SortingUseCase
     {
-        public DisplayDTO SortAndDisplayResults(ConcurrentBag<int> globalVariable)
+        public DisplayDTO Execute(ConcurrentBag<int> globalVariable)
         {
             var sortedList = globalVariable.OrderBy(x => x).ToList();
             int totalCount = globalVariable.Count;

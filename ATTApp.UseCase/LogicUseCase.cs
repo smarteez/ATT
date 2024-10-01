@@ -31,14 +31,14 @@ namespace ATTApp.UseCase
         {
 
 
-            Task oddNumberTask = Task.Run(() => OldNumbersUseCase.GenerateOddNumbers(globalVariable, 2500000));
-            Task primeNumberTask = Task.Run(() => PrimeNumbersUseCase.GeneratePrimeNumbers(globalVariable, 2500000));
+            Task oddNumberTask = Task.Run(() => OldNumbersUseCase.Execute(globalVariable, 2500000));
+            Task primeNumberTask = Task.Run(() => PrimeNumbersUseCase.Execute(globalVariable, 2500000));
 
             Task.WaitAll(oddNumberTask, primeNumberTask);
 
-            Task evenNumberTask = Task.Run(() => EvenNumbersUseCase.GenerateEvenNumbers(globalVariable, 10000000));
+            Task evenNumberTask = Task.Run(() => EvenNumbersUseCase.Execute(globalVariable, 10000000));
             evenNumberTask.Wait();
-            return SortingUseCase.SortAndDisplayResults(globalVariable);
+            return SortingUseCase.Execute(globalVariable);
         }
 
 
