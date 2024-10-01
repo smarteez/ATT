@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ATTApp.Data\ATTApp.Data.csproj" />
+    <ProjectReference Include="..\ATTApp.Domin\ATTApp.Domin.csproj" />
+    <ProjectReference Include="..\ATTApp.Repository\ATTApp.Repository.csproj" />
+    <ProjectReference Include="..\ATTApp.Shared\ATTApp.Shared.csproj" />
+    <ProjectReference Include="..\ATTApp.UseCase\ATTApp.UseCase.csproj" />
+  </ItemGroup>
+
 </Project>
