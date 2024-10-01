@@ -4,9 +4,11 @@ using ATTApp.Shared;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ATTApp.Repository.Modules
 {
@@ -27,7 +29,7 @@ namespace ATTApp.Repository.Modules
         {
             try
             {
-                context.AddRange(CreateObject(list));
+                context.Numbers.AddRange(CreateObject(list));
                 return true;
             }
             catch (Exception ex)
@@ -35,6 +37,11 @@ namespace ATTApp.Repository.Modules
                 return false;
             }
 
+        }
+
+        public List<Number> GetData() 
+        { 
+            return context.Numbers.ToList();
         }
 
         private List<Number> CreateObject(ConcurrentBag<int> list)
@@ -53,5 +60,8 @@ namespace ATTApp.Repository.Modules
 
             return numClass;
         }
+
+
+       
     }
 }
