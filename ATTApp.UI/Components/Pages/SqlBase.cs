@@ -34,7 +34,7 @@ namespace ATTApp.UI.Components.Pages
         public void SaveButton()
         {
             this.isDisabledSave = true;
-            this.save = this.SaveNumberUseCase.Execute(this.display.list);
+            this.save = this.SaveNumberUseCase.ExecuteSql(this.display.list);
             if (save)
             {
                 isDisabledXML = false;
