@@ -11,9 +11,9 @@ namespace ATTApp.Data.Sqllite.Models.Configurations
     {
         public void Configure(EntityTypeBuilder<Number> entity)
         {
-            entity
-                .HasNoKey()
-                .ToTable("Number");
+            entity.ToTable("Number");
+
+            entity.Property(e => e.Id).HasColumnName("id");
 
             OnConfigurePartial(entity);
         }
