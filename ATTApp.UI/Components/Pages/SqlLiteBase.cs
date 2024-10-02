@@ -39,10 +39,10 @@ namespace ATTApp.UI.Components.Pages
             this.isDisabledSave = false;
         }
 
-        public void SaveButton()
+        public async Task SaveButton()
         {
             this.isDisabledSave = true;
-            this.save = this.SaveNumberUseCase.ExecuteSqlLite(this.display.list);
+            this.save = await this.SaveNumberUseCase.ExecuteSqlLite(this.display.list);
             if (save)
             {
                 isDisabledXML = false;

@@ -10,8 +10,9 @@ namespace ATTApp.Repository.Contracts
 {
     public interface INumberLiteRepository
     {
-        bool Add(ConcurrentBag<int> listValues);
-
-        List<Number> GetData();
+        Task<bool> Add(List<List<Number>> lst);
+        Task<List<Number>> GetData();
+        List<List<Number>> ConvertToBatches(ConcurrentBag<int> list, int batchSize);
+        Task<bool> Delete();
     }
 }

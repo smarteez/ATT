@@ -32,9 +32,9 @@ namespace ATTApp.UseCase
             return Convert.ToBase64String(byteArray);
         }
 
-        public string ExecuteSqlLite()
+        public async Task<string> ExecuteSqlLite()
         {
-            var lst = INumberLiteRepository.GetData();
+            var lst =await INumberLiteRepository.GetData();
             var xml = ListToXml.Convert(lst).ToString();
             var byteArray = Encoding.UTF8.GetBytes(xml);
             return Convert.ToBase64String(byteArray);

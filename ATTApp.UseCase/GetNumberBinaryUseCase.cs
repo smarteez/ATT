@@ -33,9 +33,9 @@ namespace ATTApp.UseCase
 
         }
 
-        public string ExecuteSqlLite()
+        public async Task<string> ExecuteSqlLite()
         {
-            var lst = INumberLiteRepository.GetData();
+            var lst = await INumberLiteRepository.GetData();
             var bin = ListToBinary.Convert(lst).ToString();
             var byteArray = Encoding.UTF8.GetBytes(bin);
             return Convert.ToBase64String(byteArray);

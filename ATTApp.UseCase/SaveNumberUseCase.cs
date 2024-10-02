@@ -23,9 +23,11 @@ namespace ATTApp.UseCase
             return INumberRepository.Add(globalVariable);
         }
 
-        public bool ExecuteSqlLite(ConcurrentBag<int> globalVariable)
+        public async Task<bool> ExecuteSqlLite(ConcurrentBag<int> globalVariable)
         {
-            return INumberLiteRepository.Add(globalVariable);
+            await INumberLiteRepository.Delete();
+            var lst = INumberLiteRepository.ConvertToBatches(globalVariable, 1000000);
+            return await INumberLiteRepository.Add(lst);
         }
     }
 }
