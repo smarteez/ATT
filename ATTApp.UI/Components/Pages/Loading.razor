@@ -1,0 +1,22 @@
+﻿@inherits LoadingBase
+@rendermode InteractiveServer
+
+
+@if (IsLoading)
+{
+    if (LoadingTemplate != null)
+    {
+        @LoadingTemplate
+    }
+    else
+    {
+        <div class="spinner-border"></div>
+        <span style="display: inline-block; vertical-align: super">@LoadingText</span>
+    }
+}
+else
+{
+    @ChildContent
+}
+
+

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATTApp.Repository", "..\ATT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATTApp.UI", "..\ATTApp.UI\ATTApp.UI.csproj", "{B3EC9A63-EEFA-4D0D-A5A8-4BB417891AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATTApp.Data.Sqllite", "ATTApp.Data.Sqllite\ATTApp.Data.Sqllite.csproj", "{C9D01CFC-1919-4837-952D-AFE5C2228C42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATTApp.Data.Sqllite", "ATTApp.Data.Sqllite\ATTApp.Data.Sqllite.csproj", "{C9D01CFC-1919-4837-952D-AFE5C2228C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

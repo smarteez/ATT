@@ -30,7 +30,14 @@
 
             </td>
             <td>
-                <button class="btn btn-primary" disabled="@isDisabledSave" @onclick="SaveButton">Save</button>
+                <button class="btn btn-primary" disabled="@isDisabledSave" @onclick="SaveButton">Save</button><br /><br />
+                @if(isProcessing)
+                    {
+                       <Loading IsLoading="isProcessing">
+                        <p>Processing 10,000,000 entries... Please wait</p>
+                    </Loading> 
+                    }
+                    <br />
                 <table>
                     <tbody>
                         <tr>
@@ -48,3 +55,5 @@
         </tr>
     </tbody>
 </table>
+
+

@@ -14,6 +14,7 @@ namespace ATTApp.UI.Components.Pages
         public bool isDisabledBinary = true;
         public bool save = false;
         public DisplayDTO display;
+        public bool isProcessing = false;
 
         [Inject]
         public LogicUseCase LogicUseCase { get; set; }
@@ -41,14 +42,34 @@ namespace ATTApp.UI.Components.Pages
 
         public async Task SaveButton()
         {
-            this.isDisabledSave = true;
-            this.save = await this.SaveNumberUseCase.ExecuteSqlLite(this.display.list);
-            if (save)
+            try
             {
-                isDisabledXML = false;
-                isDisabledBinary = false;
+                this.isDisabledSave = true;
+                isProcessing = true;
+                Console.WriteLine("Starting save operation...");
+                await InvokeAsync(StateHasChanged);
+
+                this.save = await Task.Run(() => this.SaveNumberUseCase.ExecuteSqlLite(this.display.list));
+
+                if (save)
+                {
+                    isDisabledXML = false;
+                    isDisabledBinary = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                isProcessing = false;
+                Console.WriteLine("Save operation completed.");
+                await InvokeAsync(StateHasChanged);
             }
         }
+
+
 
 
         public async Task XMLButton()
