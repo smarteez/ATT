@@ -14,7 +14,7 @@ namespace ATTApp.UseCase
 
         public INumberRepository INumberRepository {  get; set; }
         public INumberLiteRepository INumberLiteRepository { get; set; }    
-        public SaveNumberUseCase(INumberRepository iNumberRepository, INumberLiteRepository iNumberLiteRepository) : this(iNumberRepository)
+        public SaveNumberUseCase(INumberRepository iNumberRepository, INumberLiteRepository iNumberLiteRepository)
         {
             INumberLiteRepository = iNumberLiteRepository;
         }
