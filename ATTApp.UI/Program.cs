@@ -15,6 +15,7 @@ builder.Services.AddDbContext<attContext>(options => options.UseLazyLoadingProxi
 builder.Services.AddDbContext<CCodeATTSqlLiteAttLitedbContext>(options =>options.UseSqlite(sqlLiteConnectionString));
 
 builder.Services.AddScoped<INumberRepository, NumberRepository>();
+builder.Services.AddScoped<INumberLiteRepository, NumberLiteRepository>();
 
 builder.Services.AddScoped<IsPrime>();
 builder.Services.AddScoped<ListToBinary>();

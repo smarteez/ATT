@@ -1,31 +1,29 @@
-﻿using ATTApp.Data.Models;
+﻿using ATTApp.Data.Sqllite.Models;
 using ATTApp.Repository.Contracts;
 using ATTApp.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace ATTApp.Repository.Modules
 {
-    public class NumberRepository : INumberRepository
+    public  class NumberLiteRepository : INumberLiteRepository
     {
-        public attContext context { get; set; }
-
+        public CCodeATTSqlLiteAttLitedbContext context { get; set; }
         public IsPrime IsPrime { get; set; }
 
         public List<Number> numClass = new List<Number>();
 
-        public NumberRepository(attContext context, IsPrime isPrime)
+        public NumberLiteRepository(CCodeATTSqlLiteAttLitedbContext context, IsPrime isPrime)
         {
             this.context = context;
             IsPrime = isPrime;
         }
+
         public List<Number> GetData()
         {
             return context.Numbers.ToList();
@@ -61,7 +59,7 @@ namespace ATTApp.Repository.Modules
 
         }
 
-   
+
 
         private List<Number> CreateObject(List<int> list)
         {
@@ -71,7 +69,7 @@ namespace ATTApp.Repository.Modules
                 numClass.Add(
                     new Number
                     {
-                        IsPrime = isPrime,
+                        IsPrime = isPrime ? 1:0,
                         Value = item
                     }
                     );
@@ -79,8 +77,5 @@ namespace ATTApp.Repository.Modules
 
             return numClass;
         }
-
-
-       
     }
 }
