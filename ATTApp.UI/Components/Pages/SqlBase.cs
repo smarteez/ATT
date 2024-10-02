@@ -1,6 +1,8 @@
 ﻿using ATTApp.Domin;
 using ATTApp.UseCase;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+
 
 namespace ATTApp.UI.Components.Pages
 {
@@ -11,6 +13,7 @@ namespace ATTApp.UI.Components.Pages
         public bool isDisabledXML = true;
         public bool isDisabledBinary = true;
         public bool save = false;
+        
         public DisplayDTO display;
 
         [Inject]
@@ -18,7 +21,10 @@ namespace ATTApp.UI.Components.Pages
 
         [Inject]
         public SaveNumberUseCase SaveNumberUseCase { get; set; }
-
+        [Inject]
+        public GetNumberXMLUseCase GetNumberXMLUseCase { get; set; }
+        [Inject]
+        public IJSRuntime JSRunner { get; set; }
         protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
@@ -42,9 +48,11 @@ namespace ATTApp.UI.Components.Pages
             }
         }
 
-        public void XMLButton()
+        public async Task XMLButton()
         {
-
+            var xml = this.GetNumberXMLUseCase.ExecuteSql();
+            var fileName = "NumberRecords.xml";
+            await JSRunner.InvokeVoidAsync("downloadFile", fileName, xml);
         }
 
         public void BinaryButton()

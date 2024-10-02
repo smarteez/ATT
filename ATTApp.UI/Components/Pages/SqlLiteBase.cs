@@ -1,6 +1,8 @@
 ﻿using ATTApp.Domin;
 using ATTApp.UseCase;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System.Text;
 
 namespace ATTApp.UI.Components.Pages
 {
@@ -18,6 +20,10 @@ namespace ATTApp.UI.Components.Pages
 
         [Inject]
         public SaveNumberUseCase SaveNumberUseCase { get; set; }
+        [Inject]
+        public GetNumberXMLUseCase GetNumberXMLUseCase { get; set; }
+        [Inject]
+        public IJSRuntime JSRunner { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -42,9 +48,12 @@ namespace ATTApp.UI.Components.Pages
             }
         }
 
-        public void XMLButton()
-        {
 
+        public async Task XMLButton()
+        {
+            var xml = this.GetNumberXMLUseCase.ExecuteSqlLite();
+            var fileName = "NumberRecords.xml";
+            await JSRunner.InvokeVoidAsync("downloadFile", fileName, xml);
         }
 
         public void BinaryButton()

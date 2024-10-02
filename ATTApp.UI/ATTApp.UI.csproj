@@ -20,4 +20,20 @@
     <ProjectReference Include="..\ATTApp\ATTApp.Data.Sqllite\ATTApp.Data.Sqllite.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\js\site.js">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>site.cs</LastGenOutput>
+    </Content>
+    <Content Update="wwwroot\js\site.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>site.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
 </Project>

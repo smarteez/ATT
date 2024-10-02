@@ -11,14 +11,13 @@ namespace ATTApp.UseCase
     public  class SaveNumberUseCase
     {
 
-
         public INumberRepository INumberRepository {  get; set; }
-        public INumberLiteRepository INumberLiteRepository { get; set; }    
+        public INumberLiteRepository INumberLiteRepository { get; set; }
         public SaveNumberUseCase(INumberRepository iNumberRepository, INumberLiteRepository iNumberLiteRepository)
         {
+            INumberRepository = iNumberRepository;
             INumberLiteRepository = iNumberLiteRepository;
         }
-
         public bool ExecuteSql(ConcurrentBag<int> globalVariable)
         {
             return INumberRepository.Add(globalVariable);

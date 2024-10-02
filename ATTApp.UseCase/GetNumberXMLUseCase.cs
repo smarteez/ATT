@@ -13,19 +13,31 @@ namespace ATTApp.UseCase
     {
 
         public INumberRepository INumberRepository { get; set; }
+        public INumberLiteRepository INumberLiteRepository { get; set; }
         public ListToXml ListToXml { get; set; }
 
-        public GetNumberXMLUseCase(INumberRepository iNumberRepository, ListToXml listToXml)
+
+        public GetNumberXMLUseCase(INumberRepository iNumberRepository, INumberLiteRepository iNumberLiteRepository, ListToXml listToXml)
         {
             INumberRepository = iNumberRepository;
+            INumberLiteRepository = iNumberLiteRepository;
             ListToXml = listToXml;
         }
 
-        public XDocument Execute()
+        public string ExecuteSql()
         {
             var lst = INumberRepository.GetData();
-            return ListToXml.Convert(lst);
+            var xml =  ListToXml.Convert(lst).ToString();
+            var byteArray = Encoding.UTF8.GetBytes(xml);
+            return Convert.ToBase64String(byteArray);
+        }
 
+        public string ExecuteSqlLite()
+        {
+            var lst = INumberLiteRepository.GetData();
+            var xml = ListToXml.Convert(lst).ToString();
+            var byteArray = Encoding.UTF8.GetBytes(xml);
+            return Convert.ToBase64String(byteArray);
         }
     }
 }
