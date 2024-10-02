@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace ATTApp.UI.Components.Pages
 {
-    public class HomeBase : ComponentBase
+    public class SqlBase : ComponentBase
     {
         public bool isDisabledStart = false;
         public bool isDisabledSave = true;
@@ -17,7 +17,7 @@ namespace ATTApp.UI.Components.Pages
         public LogicUseCase LogicUseCase { get; set; }
 
         [Inject]
-        public SaveNumberUseCase SaveNumberUseCase { get; set; }    
+        public SaveNumberUseCase SaveNumberUseCase { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -27,7 +27,7 @@ namespace ATTApp.UI.Components.Pages
         public void StartButton()
         {
             this.isDisabledStart = true;
-            this.display = LogicUseCase.Execute();
+            this.display = LogicUseCase.ExecuteSql();
             this.isDisabledSave = false;
         }
 
@@ -35,7 +35,7 @@ namespace ATTApp.UI.Components.Pages
         {
             this.isDisabledSave = true;
             this.save = this.SaveNumberUseCase.Execute(this.display.list);
-            if (save) 
+            if (save)
             {
                 isDisabledXML = false;
                 isDisabledBinary = false;
