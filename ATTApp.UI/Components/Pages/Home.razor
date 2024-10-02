@@ -1,7 +1,43 @@
-﻿@page "/"
+﻿@inherits HomeBase
+@rendermode InteractiveServer
+@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Assessment Task Summary:</PageTitle>
 
-<h1>Hello, world!</h1>
+<table style="width: 100%;">
+    <tbody>
+        <tr>
+            <td><h2>Data Computation</h2></td>
+            <td><h2>Saving Data</h2></td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn btn-primary" disabled="@isDisabledStart" @onclick="StartButton">Start</button><br /><br />
+                @if(display != null)
+                {
+                    <label>Total Count: @display.TotalCount</label><br />
+                    <label>Old Count: @display.OldCount</label><br />
+                    <label>Event Count: @display.EventCount</label>
+                }
 
-Welcome to your new app.
+                
+            </td>
+            <td>
+                <button class="btn btn-primary" disabled="@isDisabledSave" @onclick="SaveButton">Save</button>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><button class="btn btn-primary" disabled="@isDisabledXML" @onclick="XMLButton">Download XML</button></td>
+                                <td><button class="btn btn-primary" disabled="@isDisabledBinary" @onclick="BinaryButton">Download Binary</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
 using ATTApp.Data.Models;
+using ATTApp.Data.Sqllite.Models;
 using ATTApp.Repository.Contracts;
 using ATTApp.Repository.Modules;
 using ATTApp.Shared;
@@ -8,8 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var sqlLiteConnectionString = builder.Configuration.GetConnectionString("SqlLiteContext");
 var connectionString = builder.Configuration.GetConnectionString("ATTDBContext");
 builder.Services.AddDbContext<attContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString), ServiceLifetime.Scoped);
+builder.Services.AddDbContext<CCodeATTSqlLiteAttLitedbContext>(options =>options.UseSqlite(sqlLiteConnectionString));
 
 builder.Services.AddScoped<INumberRepository, NumberRepository>();
 

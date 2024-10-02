@@ -1,6 +1,7 @@
 ﻿using ATTApp.Data.Models;
 using ATTApp.Repository.Contracts;
 using ATTApp.Shared;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -24,13 +25,33 @@ namespace ATTApp.Repository.Modules
             this.context = context;
             IsPrime = isPrime;
         }
+        public List<Number> GetData()
+        {
+            return context.Numbers.ToList();
+        }
 
         public bool Add(ConcurrentBag<int> list)
         {
             try
             {
-                context.Numbers.AddRange(CreateObject(list));
+                context.Numbers.ExecuteDelete();
+                context.SaveChanges();
+
+                int batchSize = 10000;
+                var batches = list
+                    .Select((value, index) => new { value, index })
+                    .GroupBy(x => x.index / batchSize)
+                    .Select(g => g.Select(x => x.value).ToList())
+                    .ToList();
+
+                foreach (var batch in batches)
+                {
+                    var objects = CreateObject(batch);
+                    context.Numbers.AddRangeAsync(objects);
+                    context.SaveChangesAsync();
+                }
                 return true;
+
             }
             catch (Exception ex)
             {
@@ -39,12 +60,9 @@ namespace ATTApp.Repository.Modules
 
         }
 
-        public List<Number> GetData() 
-        { 
-            return context.Numbers.ToList();
-        }
+   
 
-        private List<Number> CreateObject(ConcurrentBag<int> list)
+        private List<Number> CreateObject(List<int> list)
         {
             foreach (var item in list)
             {

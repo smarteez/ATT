@@ -11,7 +11,7 @@ namespace ATTApp.Data.Models.Configurations
     {
         public void Configure(EntityTypeBuilder<Number> entity)
         {
-            entity.HasKey(e => e.Id).HasName("PK__Number__3214EC277914B9E1");
+            entity.HasKey(e => e.Id).HasName("PK__Number__3214EC27D4BA81C5");
 
             OnConfigurePartial(entity);
         }

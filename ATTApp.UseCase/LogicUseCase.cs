@@ -27,18 +27,25 @@ namespace ATTApp.UseCase
             SortingUseCase = sortingUseCase;
         }
 
-        public DisplayDTO Start()
+        public DisplayDTO ExecuteSql()
         {
+            Task oddNumberTask = Task.Run(() => OldNumbersUseCase.Execute(globalVariable, 25000));
+            Task primeNumberTask = Task.Run(() => PrimeNumbersUseCase.Execute(globalVariable, 25000));
+            Task.WaitAll(oddNumberTask, primeNumberTask);
+            Task evenNumberTask = Task.Run(() => EvenNumbersUseCase.Execute(globalVariable, 10000));
+            evenNumberTask.Wait();
+            return SortingUseCase.Execute(globalVariable);
+        }
 
-
+        public DisplayDTO ExecuteSqlLite()
+        {
             Task oddNumberTask = Task.Run(() => OldNumbersUseCase.Execute(globalVariable, 2500000));
             Task primeNumberTask = Task.Run(() => PrimeNumbersUseCase.Execute(globalVariable, 2500000));
-
             Task.WaitAll(oddNumberTask, primeNumberTask);
-
             Task evenNumberTask = Task.Run(() => EvenNumbersUseCase.Execute(globalVariable, 10000000));
             evenNumberTask.Wait();
             return SortingUseCase.Execute(globalVariable);
+
         }
 
 

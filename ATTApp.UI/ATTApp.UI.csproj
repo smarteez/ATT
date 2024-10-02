@@ -17,6 +17,7 @@
     <ProjectReference Include="..\ATTApp.Repository\ATTApp.Repository.csproj" />
     <ProjectReference Include="..\ATTApp.Shared\ATTApp.Shared.csproj" />
     <ProjectReference Include="..\ATTApp.UseCase\ATTApp.UseCase.csproj" />
+    <ProjectReference Include="..\ATTApp\ATTApp.Data.Sqllite\ATTApp.Data.Sqllite.csproj" />
   </ItemGroup>
 
 </Project>
