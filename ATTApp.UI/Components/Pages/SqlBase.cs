@@ -2,6 +2,8 @@
 using ATTApp.UseCase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Reflection.Metadata;
+using System;
 
 
 namespace ATTApp.UI.Components.Pages
@@ -23,6 +25,8 @@ namespace ATTApp.UI.Components.Pages
         public SaveNumberUseCase SaveNumberUseCase { get; set; }
         [Inject]
         public GetNumberXMLUseCase GetNumberXMLUseCase { get; set; }
+        [Inject]
+        public GetNumberBinaryUseCase GetNumberBinaryUseCase { get; set ; }
         [Inject]
         public IJSRuntime JSRunner { get; set; }
         protected override async Task OnInitializedAsync()
@@ -55,9 +59,11 @@ namespace ATTApp.UI.Components.Pages
             await JSRunner.InvokeVoidAsync("downloadFile", fileName, xml);
         }
 
-        public void BinaryButton()
+        public async Task BinaryButton()
         {
-
+            var binaryData = this.GetNumberBinaryUseCase.ExecuteSql();
+            var fileName = "NumberRecords.bin";
+            await JSRunner.InvokeVoidAsync("downloadFile", fileName, binaryData);
         }
 
 

@@ -14,17 +14,31 @@ namespace ATTApp.UseCase
 
 
         public INumberRepository INumberRepository { get; set; }
+
+        public INumberLiteRepository INumberLiteRepository { get; set; }
         public ListToBinary ListToBinary { get; set; }
 
-        public GetNumberBinaryUseCase(INumberRepository iNumberRepository, ListToBinary listToBinary)
+        public GetNumberBinaryUseCase(INumberRepository iNumberRepository, ListToBinary listToBinary, INumberLiteRepository iNumberLiteRepository)
         {
             INumberRepository = iNumberRepository;
             ListToBinary = listToBinary;
+            INumberLiteRepository = iNumberLiteRepository;
         }
-        public byte[] Execute()
+        public string ExecuteSql()
         {
             var lst = INumberRepository.GetData();
-            return ListToBinary.Convert(lst);
+            var bin =  ListToBinary.Convert(lst).ToString();
+            var byteArray = Encoding.UTF8.GetBytes(bin);
+            return Convert.ToBase64String(byteArray);
+
+        }
+
+        public string ExecuteSqlLite()
+        {
+            var lst = INumberLiteRepository.GetData();
+            var bin = ListToBinary.Convert(lst).ToString();
+            var byteArray = Encoding.UTF8.GetBytes(bin);
+            return Convert.ToBase64String(byteArray);
 
         }
     }
