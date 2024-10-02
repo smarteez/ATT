@@ -23,6 +23,8 @@ namespace ATTApp.UI.Components.Pages
         [Inject]
         public GetNumberXMLUseCase GetNumberXMLUseCase { get; set; }
         [Inject]
+        public GetNumberBinaryUseCase GetNumberBinaryUseCase { get; set; }
+        [Inject]
         public IJSRuntime JSRunner { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -56,9 +58,11 @@ namespace ATTApp.UI.Components.Pages
             await JSRunner.InvokeVoidAsync("downloadFile", fileName, xml);
         }
 
-        public void BinaryButton()
+        public async Task BinaryButton()
         {
-
+            var binaryData = this.GetNumberBinaryUseCase.ExecuteSqlLite();
+            var fileName = "NumberRecords.bin";
+            await JSRunner.InvokeVoidAsync("downloadFile", fileName, binaryData);
         }
 
 
