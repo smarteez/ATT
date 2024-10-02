@@ -48,12 +48,12 @@ namespace ATTApp.Repository.Modules
                     context.ChangeTracker.AutoDetectChangesEnabled = false;
 
                     await context.Database.BeginTransactionAsync();
-
+                    var tasks = new List<Task>();
                     foreach (var batch in lst)
                     {
-                        await context.BulkInsertAsync(batch);
+                        tasks.Add(Task.Run(() => context.BulkInsertAsync(batch)));
                     }
-
+                    await Task.WhenAll(tasks);
                     await context.Database.CommitTransactionAsync();
                 }
                 return true;
