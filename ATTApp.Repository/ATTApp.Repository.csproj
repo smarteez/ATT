@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EFCore.BulkExtensions" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ATTApp.Data\ATTApp.Data.csproj" />
     <ProjectReference Include="..\ATTApp.Shared\ATTApp.Shared.csproj" />
     <ProjectReference Include="..\ATTApp\ATTApp.Data.Sqllite\ATTApp.Data.Sqllite.csproj" />
